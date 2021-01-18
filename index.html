@@ -40,7 +40,7 @@
         <section ng-controller="quizCtrl as quiz" ng-show="quiz.quizMetrics.quizActive">
             <div class="row">
                 <div class="col-8">
-                    <h3>Progress: </h3>
+                    <h3>Progress: <small>{{quiz.totalAnswered}}/{{quiz.quizLength}}</small></h3>
                     <button class="btn mt-1" 
                         ng-repeat="question in quiz.dataService.quizQuestions"
                         ng-class="{'btn-info': question.selected.length, 'btn-danger': !question.selected.length}"
@@ -96,11 +96,12 @@
                         <div class="row text-center m-auto">
                             <div class="col-12 mt-3">
 
-                                <button class="btn btn-primary" ng-click="quiz.setActiveQuestion()">Continue</button>
+                                <button class="btn btn-primary" ng-click="quiz.setActiveQuestion(quiz.activeQuestion - 1)">Prev</button>
+                                <button class="btn btn-primary" ng-click="quiz.setActiveQuestion()">Next</button>
                             </div>
                             <div class="col-12 mt-3">
 
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#endQuizModal">End Quiz</button>
+                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#endQuizModal">End Quiz</button>
                             </div>
                         </div>
                     </div>
@@ -120,13 +121,84 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger">Submit</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close" ng-click="quiz.finaliseAnswers()">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Results -->
+        <section ng-controller="resultsCtrl as results" ng-show="results.quizMetrics.resultsActive">
+            <div class="row">
+                <div class="col-8">
+                    <h3>Results: <small ng-class="{'text-success': results.passOrFail() === 'Pass', 'text-danger': results.passOrFail() === 'Fail'}">{{results.getPercent()}}% {{results.passOrFail()}}</small></h3>
+                    <p>{{results.quizMetrics.numCorrect}}/{{results.dataService.quizQuestions.length}}</p>
+                    <button class="btn mt-1" 
+                        ng-repeat="question in results.dataService.quizQuestions"
+                        ng-class="{'btn-info': question.correct, 'btn-danger': !question.correct}"
+                        ng-click="results.setActiveQuestion($index)"
+                    >
+                    <i class="bi d-flex align-items-center my-1" ng-class="{'bi-check-circle': question.correct, 'bi-x-octagon': !question.correct}"></i>
+                    </button>                    
+                </div>
+
+                <!-- Results Icon Legend -->
+                <legend class="col-4 text-center">
+                    <h3>Legend:</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button class="btn btn-danger mt-1">
+                                <i class="bi bi-question-octagon d-flex align-items-center my-1"></i>
+                            </button>
+                            <div class="row">
+                                <small>Incorrect</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-info mt-1">
+                                <i class="bi bi-pencil d-flex align-items-center my-1"></i>
+                            </button>
+                            <div class="row">
+                                <small>Correct</small>
+                            </div>
+                        </div>
+                    </div>
+                </legend>
+            </div>
+
+            <!-- Results Questions render area -->
+            <div class="row my-4">
+                <h3>Question:</h3>
+                <div class="card bg-secondary">
+                    <div class="row card-body">
+                        <div class="col-12">
+                            <h4 class="mb-4">{{results.activeQuestion + 1 + ". " + results.dataService.quizQuestions[results.activeQuestion].text}}</h4>
+                            <div class="row text-center">
+                                <div class="col-sm-6 my-2" ng-repeat="answers in results.dataService.quizQuestions[results.activeQuestion].possibilities">
+                                    <h4 
+                                        class="answer btn py-3 w-100" 
+                                        ng-class="results.getAnswerClass($index)"
+                                    >
+                                        {{answers.answer}}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center m-auto">
+                            <div class="col-12 mt-3">
+
+                                <button class="btn btn-primary" ng-click="quiz.setActiveQuestion(quiz.activeQuestion - 1)">Prev</button>
+                                <button class="btn btn-primary" ng-click="quiz.setActiveQuestion()">Next</button>
+                            </div>
+                            <div class="col-12 mt-3">
+
+                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#endQuizModal">Try Again</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
     </main>
 
