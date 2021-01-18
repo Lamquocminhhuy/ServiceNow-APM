@@ -23,90 +23,110 @@
         <!-- Quiz Row -->
         <div class="row mt-5">
                 
-                <!-- Start Quiz button -->
-                <div class="col-6 offset-3 text-center">
-                    <button
-                        class="btn btn-success fw-bold text" 
-                        ng-controller="buttonCtrl as button" 
-                        ng-hide="button.quizMetrics.quizActive"
-                        ng-click="button.startQuiz()"
+            <!-- Start Quiz button -->
+            <div class="col-6 offset-3 text-center">
+                <button
+                    class="btn btn-success fw-bold text" 
+                    ng-controller="buttonCtrl as button" 
+                    ng-hide="button.quizMetrics.quizActive || button.quizMetrics.resultsActive"
+                    ng-click="button.startQuiz()"
+                >
+                    Start Quiz
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <section ng-controller="quizCtrl as quiz" ng-show="quiz.quizMetrics.quizActive">
+            <div class="row">
+                <div class="col-8">
+                    <h3>Progress: </h3>
+                    <button class="btn mt-1" 
+                        ng-repeat="question in quiz.dataService.quizQuestions"
+                        ng-class="{'btn-info': question.selected.length, 'btn-danger': !question.selected.length}"
+                        ng-click="quiz.setActiveQuestion($index)"
                     >
-                        Start Quiz
-                    </button>
+                    <i class="bi d-flex align-items-center my-1" ng-class="{'bi-pencil': question.selected.length, 'bi-question-octagon': !question.selected.length}"></i>
+                    </button>                    
+                </div>
+
+                <!-- Icon Legend -->
+                <legend class="col-4 text-center">
+                    <h3>Legend:</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button class="btn btn-danger mt-1">
+                                <i class="bi bi-question-octagon d-flex align-items-center my-1"></i>
+                            </button>
+                            <div class="row">
+                                <small>Unanswered</small>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <button class="btn btn-info mt-1">
+                                <i class="bi bi-pencil d-flex align-items-center my-1"></i>
+                            </button>
+                            <div class="row">
+                                <small>Answered</small>
+                            </div>
+                        </div>
+                    </div>
+                </legend>
+            </div>
+
+            <!-- Questions render area -->
+            <div class="row my-4">
+                <h3>Question:</h3>
+                <div class="card bg-secondary">
+                    <div class="row card-body">
+                        <div class="col-12">
+                            <h4 class="mb-4">{{quiz.activeQuestion + 1 + ". " + quiz.dataService.quizQuestions[quiz.activeQuestion].text}}</h4>
+                            <div class="row text-center">
+                                <div class="col-sm-6 my-2" ng-repeat="answers in quiz.dataService.quizQuestions[quiz.activeQuestion].possibilities">
+                                    <h4 
+                                        class="answer btn py-3 w-100" 
+                                        ng-class="{'btn-warning' : quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) !== - 1, 'btn-info': quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) === - 1}"
+                                        ng-click="quiz.selectAnswer($index)"
+                                    >
+                                        {{answers.answer}}
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row text-center m-auto">
+                            <div class="col-12 mt-3">
+
+                                <button class="btn btn-primary" ng-click="quiz.setActiveQuestion()">Continue</button>
+                            </div>
+                            <div class="col-12 mt-3">
+
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#endQuizModal">End Quiz</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-                <!-- Progress Section -->
-                <section ng-controller="quizCtrl as quiz" ng-show="quiz.quizMetrics.quizActive">
-                    <div class="row">
-                        <div class="col-8">
-                            <h3>Progress: </h3>
-                            <button class="btn mt-1" 
-                                ng-repeat="question in quiz.dataService.quizQuestions"
-                                ng-class="{'btn-info': question.selected.length, 'btn-danger': !question.selected.length}"
-                                ng-click="quiz.setActiveQuestion($index)"
-                            >
-                            <i class="bi d-flex align-items-center my-1" ng-class="{'bi-pencil': question.selected.length, 'bi-question-octagon': !question.selected.length}"></i>
-                            </button>                    
+            <!-- End Quiz Modal -->
+            <div class="modal"  id="endQuizModal" tabindex="-1">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title">End Quiz</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-
-                        <!-- Icon Legend -->
-                        <legend class="col-4 text-center">
-                            <h3>Legend:</h3>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <button class="btn btn-danger mt-1">
-                                        <i class="bi bi-question-octagon d-flex align-items-center my-1"></i>
-                                    </button>
-                                    <div class="row">
-                                        <small>Unanswered</small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <button class="btn btn-info mt-1">
-                                        <i class="bi bi-pencil d-flex align-items-center my-1"></i>
-                                    </button>
-                                    <div class="row">
-                                        <small>Answered</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </legend>
-                    </div>
-
-                    <!-- Questions render area -->
-                    <div class="row my-4">
-                        <h3>Question:</h3>
-                        <div class="card bg-secondary">
-                            <div class="row card-body">
-                                <div class="col-12">
-                                    <h4 class="mb-4">{{quiz.activeQuestion + 1 + ". " + quiz.dataService.quizQuestions[quiz.activeQuestion].text}}</h4>
-                                    <div class="row text-center">
-                                        <div class="col-sm-6 my-2" ng-repeat="answers in quiz.dataService.quizQuestions[quiz.activeQuestion].possibilities">
-                                            <h4 
-                                                class="answer btn py-3 w-100" 
-                                                ng-class="{'btn-warning' : quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) !== - 1, 'btn-info': quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) === - 1}"
-                                                ng-click="quiz.selectAnswer($index)"
-                                            >
-                                                {{answers.answer}}
-                                            </h4>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row text-center m-auto">
-                                    <div class="col-12 mt-3">
-
-                                        <button class="btn btn-primary" ng-click="quiz.setActiveQuestion()">Continue</button>
-                                    </div>
-                                    <div class="col-12 mt-3">
-
-                                        <button class="btn btn-primary" ng-click="quiz.endQuiz()">End Quiz</button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="modal-body">
+                            <p>You have answered {{quiz.totalAnswered}}/{{quiz.quizLength}} questions. Submit your answers?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger">Submit</button>
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
+
 
     </main>
 
@@ -117,6 +137,7 @@
     <script src="assets/js/app.js"></script>
     <script src="assets/js/controllers/buttonCtrl.js"></script>
     <script src="assets/js/controllers/quizCtrl.js"></script>
+    <script src="assets/js/controllers/results.js"></script>
     <script src="assets/js/factories/quizMetrics.js"></script>
     <script src="assets/js/factories/dataService.js"></script>
 </body>
