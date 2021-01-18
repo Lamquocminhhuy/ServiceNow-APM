@@ -14,7 +14,7 @@
             return (quizMetrics.numCorrect / dataService.quizQuestions.length * 100).toFixed(2)
         }
         this.passOrFail = function(){
-            if (this.getPercent > 70){
+            if (this.getPercent() > 70){
                 return "Pass"
             } else {
                 return "Fail"
