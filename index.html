@@ -85,7 +85,7 @@
                                 <div class="col-sm-6 my-2" ng-repeat="answers in quiz.dataService.quizQuestions[quiz.activeQuestion].possibilities">
                                     <h4 
                                         class="answer btn py-3 w-100" 
-                                        ng-class="{'btn-warning' : quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) !== - 1, 'btn-info': quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) === - 1}"
+                                        ng-class="{'btn-warning' : quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) !== - 1, 'btn-light': quiz.dataService.quizQuestions[quiz.activeQuestion].selected.indexOf($index) === - 1}"
                                         ng-click="quiz.selectAnswer($index)"
                                     >
                                         {{answers.answer}}

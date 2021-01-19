@@ -13,7 +13,7 @@
     }
 
     var correctAnswers = [
-        /* 01 */ [3], /* 02 */ [3], /* 03 */ [3], /* 04 */ [3], /* 05 */ [3], /* 06 */ [3], /* 07 */ [3], /* 08 */ [3], /* 09 */ [3], /* 10 */ [3], /* 11 */ [3], /* 12 */ [3], /* 13 */ [3], /* 14 */ [3], /* 15 */ [3], /* 16 */ [3], /* 17 */ [3], /* 18 */ [3], /* 19 */ [3], /* 20 */ [3], /* 21 */ [3], /* 22 */ [3], /* 23 */ [3], /* 24 */ [3], /* 25 */ [3], /* 26 */ [3], /* 27 */ [3], /* 28 */ [3], /* 29 */ [3], /* 30 */ [3], /* 31 */ [3], /* 32 */ [3], /* 33 */ [3], /* 34 */ [3], /* 35 */ [3], /* 36 */ [3], /* 37 */ [3], /* 38 */ [3], /* 39 */ [3], /* 40 */ [3], /* 41 */ [3], /* 42 */ [3], /* 43 */ [3], /* 44 */ [3], /* 45 */ [3], /* 46 */ [3], /* 47 */ [3], /* 48 */ [3], /* 49 */ [3], /* 50 */ [3], /* 51 */ [3], /* 52 */ [3], /* 53 */ [3], /* 54 */ [3], /* 55 */ [3], /* 56 */ [3], /* 57 */ [3], /* 58 */ [3], /* 59 */ [3], /* 60 */ [3], 
+        /* 01 */ [3], /* 02 */ [0], /* 03 */ [3], /* 04 */ [3], /* 05 */ [3], /* 06 */ [3], /* 07 */ [3], /* 08 */ [3], /* 09 */ [3], /* 10 */ [3], /* 11 */ [3], /* 12 */ [3], /* 13 */ [3], /* 14 */ [3], /* 15 */ [3], /* 16 */ [3], /* 17 */ [3], /* 18 */ [3], /* 19 */ [3], /* 20 */ [3], /* 21 */ [3], /* 22 */ [3], /* 23 */ [3], /* 24 */ [3], /* 25 */ [3], /* 26 */ [3], /* 27 */ [3], /* 28 */ [3], /* 29 */ [3], /* 30 */ [3], /* 31 */ [3], /* 32 */ [3], /* 33 */ [3], /* 34 */ [3], /* 35 */ [3], /* 36 */ [3], /* 37 */ [3], /* 38 */ [3], /* 39 */ [3], /* 40 */ [3], /* 41 */ [3], /* 42 */ [3], /* 43 */ [3], /* 44 */ [3], /* 45 */ [3], /* 46 */ [3], /* 47 */ [3], /* 48 */ [3], /* 49 */ [3], /* 50 */ [3], /* 51 */ [3], /* 52 */ [3], /* 53 */ [3], /* 54 */ [3], /* 55 */ [3], /* 56 */ [3], /* 57 */ [3], /* 58 */ [3], /* 59 */ [3], /* 60 */ [3], 
     ]
     var questions = [
         // 01
@@ -58,163 +58,173 @@
         },
         // 03
         {
-            text: '',
+            text: 'As it relates to ServiceNow reporting, which of the following statements describes what a metric can do?',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'A metric is a report gauge used on homepages to display real-time data',
                 },
                 {
-                    answer: '',
+                    answer: 'A metric is a time measurement used to report the effectiveness of workflows and SLAs',
                 },
                 {
-                    answer: '',
+                    answer: 'A metric is used to measure and evaluate the effectiveness of IT service management processes',
                 },
                 {
-                    answer: '',
+                    answer: 'A metric is a comparative measurement used to report the effectiveness of flows and SLAs',
                 },
             ],
             selected: [],
-            correct: null // 
+            correct: null // 2
         },
         // 04
         {
-            text: '',
+            text: 'The display sequence is controlled in a Service Catalog Item using which of the following?',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'The Default Value field in the Catalog Item form',
                 },
                 {
-                    answer: '',
+                    answer: 'The Sequence field in the Catalog Item form',
                 },
                 {
-                    answer: '',
+                    answer: 'The Order field in the Variable form',
                 },
                 {
-                    answer: '',
+                    answer: 'The Choice field in the Variable form',
                 },
             ],
             selected: [],
-            correct: null // 
+            correct: null // 2
         },
         // 05
         {
-            text: '',
+            text: 'Reports can be created from which different places in the platform? (Choose two.)',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'List column heading',
                 },
                 {
-                    answer: '',
+                    answer: 'Metrics module',
                 },
                 {
-                    answer: '',
+                    answer: 'Statistics module',
                 },
                 {
-                    answer: '',
+                    answer: 'View / Run module',
                 },
             ],
             selected: [],
-            correct: null // 
+            correct: null // 0, 3
         },
         // 06
         {
-            text: '',
+            text: 'Knowledge Base Search results can be sorted by which of the following? (Choose three.)',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'Most recent update',
                 },
                 {
-                    answer: '',
+                    answer: 'Popularity',
                 },
                 {
-                    answer: '',
+                    answer: 'Relevancy',
                 },
                 {
-                    answer: '',
+                    answer: 'Manager assignment',
+                },
+                {
+                    answer: 'Number of views',
                 },
             ],
             selected: [],
-            correct: null // 
+            correct: null // 0, 2, 4
         },
         // 07
         {
-            text: '',
+            text: 'What is the path an Administrator could take to view the fulfillment stage task list for an order placed by a user?',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'RITM (Number)>REQ (Number)>PROCUREMENT (Number)',
                 },
                 {
-                    answer: '',
+                    answer: 'REQ (Number)>RITM (Number)>PROCUREMENT (Number)',
                 },
                 {
-                    answer: '',
+                    answer: 'REQ (Number)>RITM (Number)>TASK (Number)',
                 },
                 {
-                    answer: '',
+                    answer: 'FULFILLMENT (Number)>RITM (Number)>TASK (Number)',
                 },
             ],
             selected: [],
-            correct: null // 
+            correct: null // 2
         },
         // 08
         {
-            text: '',
+            text: 'Which term refers to application menus and modules which you may want to access quickly and often?',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'Breadcrumb',
                 },
                 {
-                    answer: '',
+                    answer: 'Favorite',
                 },
                 {
-                    answer: '',
+                    answer: 'Tag',
                 },
                 {
-                    answer: '',
+                    answer: 'Bookmark',
                 },
             ],
             selected: [],
-            correct: null // 
+            correct: null // 1
         },
         // 09
         {
-            text: '',
+            text: 'What is generated from the Service Catalog once a user places an order for an item or service?',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'A change request',
                 },
                 {
-                    answer: '',
+                    answer: 'An Order Guide',
                 },
                 {
-                    answer: '',
+                    answer: 'A request',
                 },
                 {
-                    answer: '',
+                    answer: 'An SLA',
                 },
             ],
             selected: [],
-            correct: null // 
+            correct: null // 2
         },
         // 10
         {
-            text: '',
+            text: 'From the User menu, which actions can a user select? (Choose three.)',
             possibilities: [
                 {
-                    answer: '',
+                    answer: 'Send Notifications',
                 },
                 {
-                    answer: '',
+                    answer: 'Log Out ServiceNow',
                 },
                 {
-                    answer: '',
+                    answer: 'Elevate Roles',
                 },
                 {
-                    answer: '',
+                    answer: 'Impersonate Users',
                 },
+                {
+                    answer: 'Order from Service Catalog',
+                },
+                {
+                    answer: 'Approve Records',
+                },
+
             ],
             selected: [],
-            correct: null // 
+            correct: null // 1, 2, 3
         },
         // 11
         {

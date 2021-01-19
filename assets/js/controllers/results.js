@@ -26,7 +26,7 @@
             } else if (dataService.quizQuestions[this.activeQuestion].selected.indexOf(index) > -1){
                 return "btn-danger"
             } else {
-                return "btn-info"
+                return "btn-light"
             }
         }
         this.setActiveQuestion = function(index){
